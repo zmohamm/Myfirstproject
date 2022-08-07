@@ -35,7 +35,7 @@ variable "src_img" {
 
             
     description = "Source disk image. If neither source_image nor source_image_family is specified, defaults to the debian-cloud/debian-9."
-    default     =  "debian-cloud/debian-9"
+    default     =   "ubuntu-os-cloud/ubuntu-1804-lts"
          
 }
 
