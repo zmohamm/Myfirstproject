@@ -4,3 +4,12 @@ variable "email_address" {
 
   
 }
+
+variable "project_id" {
+
+    type = string
+    default=""
+        
+        
+  
+}
