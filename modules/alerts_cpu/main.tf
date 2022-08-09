@@ -17,5 +17,6 @@ resource "google_monitoring_alert_policy" "alert_policy" {
       }
     }
   }
+  notification_channels = var.notification_channels
   
 }
