@@ -8,7 +8,7 @@ module "email_channel"{
 
 
 
-module "cpu_alert_policy" {
+module "alerts_cpu" {
   source                  = "./modules/alerts_cpu"
 
   
