@@ -1,15 +1,3 @@
-terraform{
-    required_version = "1.2.5"
-}
-
-resource "google_monitoring_notification_channel" "test" {
-  display_name = "Test Notification Channel"
-  type         = "email"
-  labels = {
-    
-    email_address = var.email_address
-  }
-}
 
 resource "google_monitoring_alert_policy" "alert_policy" {
   display_name = "test Alert Policy"
@@ -30,5 +18,4 @@ resource "google_monitoring_alert_policy" "alert_policy" {
     }
   }
   
-  notification_channels = google_monitroing_notification_channel.test.*.id
 }
