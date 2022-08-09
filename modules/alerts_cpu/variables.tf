@@ -13,3 +13,9 @@ variable "project_id" {
         
   
 }
+
+variable "notification_channels" {
+    type = list(string)
+    
+  
+}
