@@ -66,3 +66,81 @@ variable "zone" {
 
   
 }
+
+variable "policies" {
+    type = any
+    default = {
+"GCE Alerts policy-CPU Utilization" = {
+display_name = ""   ## alert policy name which is displayed when an incident is generated 
+combiner = "OR"
+
+
+
+  content_value = "Please checkout current incident"
+
+#documentation
+
+
+  
+#content_value = "Please checkout current incident"
+    
+conditions = [       ## multiple condtions are are specified and combined, each with different parameter values ,metrics and resources can be specified
+
+    {
+      display_name = ""  ## the  name  displayed of the alert policy condition due to which an incident is triggered
+   
+      filter     = "metric.type=\"compute.googleapis.com/instance/cpu/usage_time\" AND resource.type=\"gce_instance\""
+      duration   = "60s"             
+      comparison = "COMPARISON_GT"
+      threshold_value = 80           ## thresold values  defined against which the metrics of the resource is matched against
+      
+      
+        alignment_period   = "60s"
+        per_series_aligner = "ALIGN_SUM"
+        cross_series_reducer = "REDUCE_SUM"       
+      
+    },
+    {
+      display_name = ""
+    
+      filter     = "metric.type=\"compute.googleapis.com/instance/cpu/usage_time\" AND resource.type=\"gce_instance\""
+      duration   = "60s"
+      comparison = "COMPARISON_GT"
+      threshold_value = 95
+      
+      
+        alignment_period   = "60s"
+        per_series_aligner = "ALIGN_SUM"
+        cross_series_reducer = "REDUCE_SUM"       
+      
+    }
+
+]},
+"GCE Alert policy - Disk Utilization" = {
+display_name = ""
+combiner = "AND"
+conditions = [
+    {
+      display_name = ""
+   
+      filter     = "metric.type=\"compute.googleapis.com/instance/disk/percent_used\" AND resource.type=\"gce_instance\""
+      duration   = "60s"
+      comparison = "COMPARISON_GT"
+      threshold_value = 80
+       alignment_period   = "60s"
+        per_series_aligner = "ALIGN_SUM"
+        cross_series_reducer = "REDUCE_SUM"       
+        },
+    {
+      display_name = "GCE Alerts - Disk Utilization over 80% :P2"
+  filter     = "metric.type=\"compute.googleapis.com/instance/disk/percent_used\" AND resource.type=\"gce_instance\""
+      duration   = "60s"
+      comparison = "COMPARISON_GT"
+      threshold_value = 95
+       alignment_period   = "60s"
+        per_series_aligner = "ALIGN_SUM"
+        cross_series_reducer = "REDUCE_SUM"       
+    }
+]}
+}
+}
